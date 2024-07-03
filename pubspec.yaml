@@ -1,0 +1,21 @@
+name: universal_storage_space
+description: "A package that provides a unified interface for storage space information for Android, iOS, macOS, Linux, and Windows."
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.4.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  disk_space_2:
+    path: packages/disk_space_2
+  universal_disk_space:
+    path: packages/universal_disk_space
+  platform: ^3.1.5
+
+dev_dependencies:
+  mocktail: ^1.0.3
+  test: ^1.25.2
+  very_good_analysis: ^5.1.0

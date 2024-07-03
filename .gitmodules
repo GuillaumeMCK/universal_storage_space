@@ -1,0 +1,6 @@
+[submodule "packages/universal_disk_space"]
+	path = packages/universal_disk_space
+	url = https://github.com/gilnobrega/universal_disk_space.git
+[submodule "packages/disk_space_2"]
+	path = packages/disk_space_2
+	url = https://github.com/activcoding/disk_space_2.git
