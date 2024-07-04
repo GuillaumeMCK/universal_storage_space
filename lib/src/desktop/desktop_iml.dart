@@ -13,7 +13,7 @@ class UniversalStorageSpaceDesktop
   Future<List<Disk>> _getDisks() async {
     await _diskSpace.scan();
     final localDisks = _diskSpace.disks
-        .where((d) => RegExp(r'(/|\\\\)').hasMatch(d.devicePath))
+        .where((d) => !RegExp(r'(//|\\\\)').hasMatch(d.devicePath))
         .toList();
     for (final disk in localDisks) {
       log('Disk: ${disk.mountPath}');
