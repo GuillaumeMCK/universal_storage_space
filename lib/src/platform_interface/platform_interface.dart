@@ -2,11 +2,11 @@
 /// must implement.
 abstract class UniversalStorageSpacePlatformInterface {
   /// Returns the total storage space in bytes.
-  Future<double?> getTotalSpace();
+  Future<double> getTotalSpace();
 
   /// Returns the free storage space in bytes.
-  Future<double?> getFreeSpace();
+  Future<double> getFreeSpace();
 
   /// Returns the used storage space in bytes.
-  Future<double?> getUsedSpace();
+  Future<double> getUsedSpace();
 }

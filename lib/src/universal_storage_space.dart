@@ -17,17 +17,17 @@ class UniversalStorageSpace implements UniversalStorageSpacePlatformInterface {
   late final UniversalStorageSpacePlatformInterface _platformInterface;
 
   @override
-  Future<double?> getFreeSpace() {
+  Future<double> getFreeSpace() {
     return _platformInterface.getFreeSpace();
   }
 
   @override
-  Future<double?> getTotalSpace() {
+  Future<double> getTotalSpace() {
     return _platformInterface.getTotalSpace();
   }
 
   @override
-  Future<double?> getUsedSpace() {
+  Future<double> getUsedSpace() {
     return _platformInterface.getUsedSpace();
   }
 }

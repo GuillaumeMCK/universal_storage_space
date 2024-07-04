@@ -47,8 +47,8 @@ class UniversalStorageSpaceDesktop
   /// Returns the used storage space in bytes.
   @override
   Future<double> getUsedSpace() async {
-    final total = await getTotalSpace() ?? 0;
-    final free = await getFreeSpace() ?? 0;
+    final total = await getTotalSpace();
+    final free = await getFreeSpace();
     return total - free;
   }
 }

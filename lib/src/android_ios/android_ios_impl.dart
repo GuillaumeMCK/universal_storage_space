@@ -5,19 +5,18 @@ import 'package:universal_storage_space/src/platform_interface/platform_interfac
 /// This class should be used to implement methods that are platform specific.
 class UniversalStorageSpaceAndroidIos
     extends UniversalStorageSpacePlatformInterface {
-  Future<double?> getTotalSpace() => () async {
-        return await DiskSpace.getTotalDiskSpace ?? 0;
-      }();
+  @override
+  Future<double> getTotalSpace() =>
+      DiskSpace.getTotalDiskSpace.then((value) => value ?? 0);
 
   @override
-  Future<double?> getFreeSpace() => () async {
-        return await DiskSpace.getFreeDiskSpace ?? 0;
-      }();
+  Future<double> getFreeSpace() =>
+      DiskSpace.getFreeDiskSpace.then((value) => value ?? 0);
 
   @override
-  Future<double?> getUsedSpace() => () async {
-        final total = await DiskSpace.getTotalDiskSpace ?? 0;
-        final free = await DiskSpace.getFreeDiskSpace ?? 0;
-        return total - free;
-      }();
+  Future<double> getUsedSpace() async {
+    final total = await getTotalSpace();
+    final free = await getFreeSpace();
+    return total - free;
+  }
 }
