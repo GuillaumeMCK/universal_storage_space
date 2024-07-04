@@ -9,8 +9,9 @@ class UniversalStorageSpace implements UniversalStorageSpacePlatformInterface {
       _platformInterface = UniversalStorageSpaceAndroidIos();
     } else if (_platform.isWindows || _platform.isLinux || _platform.isMacOS) {
       _platformInterface = UniversalStorageSpaceDesktop();
+    } else {
+      throw UnsupportedError('Unsupported platform');
     }
-    throw UnsupportedError('Unsupported platform');
   }
 
   final Platform _platform = const LocalPlatform();
