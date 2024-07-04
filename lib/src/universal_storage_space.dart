@@ -4,11 +4,12 @@ import 'package:universal_storage_space/src/desktop/desktop_iml.dart';
 import 'package:universal_storage_space/src/platform_interface/platform_interface.dart';
 
 class UniversalStorageSpace implements UniversalStorageSpacePlatformInterface {
-  UniversalStorageSpace() {
+  /// The path to the directory for which the storage space should be calculated.
+  UniversalStorageSpace({required String path}) {
     if (_platform.isAndroid || _platform.isIOS) {
-      _platformInterface = UniversalStorageSpaceAndroidIos();
+      _platformInterface = UniversalStorageSpaceAndroidIos(path: path);
     } else if (_platform.isWindows || _platform.isLinux || _platform.isMacOS) {
-      _platformInterface = UniversalStorageSpaceDesktop();
+      _platformInterface = UniversalStorageSpaceDesktop(path: path);
     } else {
       throw UnsupportedError('Unsupported platform');
     }

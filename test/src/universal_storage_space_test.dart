@@ -5,7 +5,7 @@ import 'package:universal_storage_space/universal_storage_space.dart';
 void main() {
   group('UniversalStorageSpace', () {
     test('can be instantiated', () {
-      expect(UniversalStorageSpace(), isNotNull);
+      expect(UniversalStorageSpace(path: ''), isNotNull);
     });
   });
 }

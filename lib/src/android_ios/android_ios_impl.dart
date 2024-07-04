@@ -5,6 +5,9 @@ import 'package:universal_storage_space/src/platform_interface/platform_interfac
 /// This class should be used to implement methods that are platform specific.
 class UniversalStorageSpaceAndroidIos
     extends UniversalStorageSpacePlatformInterface {
+  /// The path to the directory for which the storage space should be calculated.
+  UniversalStorageSpaceAndroidIos({required super.path});
+
   @override
   Future<double> getTotalSpace() =>
       DiskSpace.getTotalDiskSpace.then((value) => value ?? 0);

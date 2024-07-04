@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:universal_disk_space/universal_disk_space.dart';
 import 'package:universal_storage_space/src/platform_interface/platform_interface.dart';
@@ -7,21 +8,25 @@ import 'package:universal_storage_space/src/platform_interface/platform_interfac
 /// This class should be used to implement methods that are platform specific.
 class UniversalStorageSpaceDesktop
     extends UniversalStorageSpacePlatformInterface {
-  final _diskSpace = DiskSpace();
+  /// The path to the directory for which the storage space should be calculated.
+  UniversalStorageSpaceDesktop({required this.path}) : super(path: path);
+
+  final DiskSpace _diskSpace = DiskSpace();
+  final String path;
 
   /// Returns a list of [Disk] objects representing the disks on the system.
   Future<List<Disk>> _getDisks() async {
     await _diskSpace.scan();
-    final localDisks = _diskSpace.disks
+    try {
+      final disk = _diskSpace.getDisk(Directory(path));
+      return [disk];
+    } catch (e) {
+      log('Error: $e');
+    }
+    // Filter out network drives
+    return _diskSpace.disks
         .where((d) => !RegExp(r'(//|\\\\)').hasMatch(d.devicePath))
         .toList();
-    for (final disk in localDisks) {
-      log('Disk: ${disk.mountPath}');
-      log('  Used: ${disk.usedSpace}');
-      log('  Total: ${disk.totalSize}');
-      log('  Path: ${disk.devicePath}');
-    }
-    return localDisks;
   }
 
   /// Returns the total storage space in bytes.
